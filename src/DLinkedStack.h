@@ -44,7 +44,7 @@ DLinkedStack<ItemType>::DLinkedStack() : headPtr(nullptr), topPtr(nullptr) {
 template<class ItemType>
 DLinkedStack<ItemType>::DLinkedStack(const DLinkedStack<ItemType> &aStack) {
     //TODO - Implement the copy constructor
-    /*Node<ItemType> *originalStackNode = aStack.topPtr;
+    Node<ItemType> *originalStackNode = aStack.headPtr;
 
     if( originalStackNode == nullptr )
     {
@@ -63,19 +63,15 @@ DLinkedStack<ItemType>::DLinkedStack(const DLinkedStack<ItemType> &aStack) {
             ItemType nextItem = originalStackNode->getItem();
             Node<ItemType> *nextNode = new Node<ItemType>( nextItem );
 
-            if( originalStackNode->getNext() == nullptr )
-            {
-                topPtr->setNext( nextNode );
-                topPtr = topPtr->getNext();
-                originalStackNode = originalStackNode->getNext();
-            }
+            topPtr->setNext( nextNode );
+            nextNode->setPrev( topPtr );
+            topPtr = nextNode;
 
-            topPtr->setNext( nullptr );
-            headPtr->setPrev( nullptr );
+            originalStackNode = originalStackNode->getNext();
 
         }
 
-    }*/
+    }
 }
 
 template<class ItemType>
